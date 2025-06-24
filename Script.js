@@ -7,24 +7,24 @@ document.addEventListener('DOMContentLoaded',()=>{
             const value = button.textContent;   
             console.log(value);
             
-            if (value === 'C') {
+            if (value === 'C') { //botón clear
                 calculatorDisplay.value = '';
-            }else if(value=== 'DEL'){
-                calculatorDisplay.value = calculatorDisplay.value.slice(0, -1);
-            }else if(value==="="){
+            }else if(value=== 'DEL'){ //botón para borrar
+                calculatorDisplay.value = calculatorDisplay.value.slice(0, -1); 
+            }else if(value==="="){ //para calcular
                 try{
-                    const expression = calculatorDisplay.value.replace(',', '.');
+                    const expresion = calculatorDisplay.value.replace(',', '.');
                     
-                    if (expression.trim() === '') {
+                    if (expresion.trim() === '') {
                     calculatorDisplay.value = '';
                     return;
                     }
 
-                    if (/\/\s*0(?!\d)/.test(expression)) {
-                        calculatorDisplay.value = 'Math Error';
+                    if (/\/\s*0(?!\d)/.test(expresion)) { //regex para evitar error "Infinity"
+                        calculatorDisplay.value = 'Error';
                         return;
                     }
-                    const result = eval(expression);
+                    const result = eval(expresion);
                     calculatorDisplay.value=result.toString();
                 }catch{
                     calculatorDisplay.value = 'Error';
